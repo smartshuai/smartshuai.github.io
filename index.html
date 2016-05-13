@@ -303,7 +303,9 @@
 
       
         
-          <p>1.ViewGroup继承了View，这意味着View本身就可以是单个控件也可以是又多个控件组成的一组控件，通过这种关系形成了View树的结构。由此，LinearLayout是一个View也是一个ViewGroup，而ViewGroup内部可以又子View，这个子View同样还可以是ViewGroup。<br>2.View中top,left,right,bottom表示View相对于父容器的坐标。<br>而translationX表示View相对于left的偏移，x表示偏移后的坐标，所以有：<br>getX() = getLeft() + getTranslationX();<br>
+          <ol>
+<li>ViewGroup继承了View，这意味着View本身就可以是单个控件也可以是又多个控件组成的一组控件，通过这种关系形成了View树的结构。由此，LinearLayout是一个View也是一个ViewGroup，而ViewGroup内部可以又子View，这个子View同样还可以是ViewGroup。</li>
+<li>View中top,left,right,bottom表示View相对于父容器的坐标。<br>而translationX表示View相对于left的偏移，x表示偏移后的坐标，所以有：<br>getX() = getLeft() + getTranslationX();
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/05/13/Andorid开发艺术探索-读书笔记-第三章/#more" rel="contents">
               阅读全文 &raquo;

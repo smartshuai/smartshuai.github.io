@@ -84,16 +84,19 @@
 
 
 
-<meta name="description" content="1.ViewGroup继承了View，这意味着View本身就可以是单个控件也可以是又多个控件组成的一组控件，通过这种关系形成了View树的结构。由此，LinearLayout是一个View也是一个ViewGroup，而ViewGroup内部可以又子View，这个子View同样还可以是ViewGroup。2.View中top,left,right,bottom表示View相对于父容器的坐标。而tra">
+<meta name="description" content="ViewGroup继承了View，这意味着View本身就可以是单个控件也可以是又多个控件组成的一组控件，通过这种关系形成了View树的结构。由此，LinearLayout是一个View也是一个ViewGroup，而ViewGroup内部可以又子View，这个子View同样还可以是ViewGroup。
+View中top,left,right,bottom表示View相对于父容器的坐标。而trans">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Andorid开发艺术探索 读书笔记 第三章">
 <meta property="og:url" content="http://yoursite.com/2016/05/13/Andorid开发艺术探索-读书笔记-第三章/index.html">
 <meta property="og:site_name" content="王帅’s Blog">
-<meta property="og:description" content="1.ViewGroup继承了View，这意味着View本身就可以是单个控件也可以是又多个控件组成的一组控件，通过这种关系形成了View树的结构。由此，LinearLayout是一个View也是一个ViewGroup，而ViewGroup内部可以又子View，这个子View同样还可以是ViewGroup。2.View中top,left,right,bottom表示View相对于父容器的坐标。而tra">
-<meta property="og:updated_time" content="2016-05-13T01:47:29.996Z">
+<meta property="og:description" content="ViewGroup继承了View，这意味着View本身就可以是单个控件也可以是又多个控件组成的一组控件，通过这种关系形成了View树的结构。由此，LinearLayout是一个View也是一个ViewGroup，而ViewGroup内部可以又子View，这个子View同样还可以是ViewGroup。
+View中top,left,right,bottom表示View相对于父容器的坐标。而trans">
+<meta property="og:updated_time" content="2016-05-13T04:43:09.423Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Andorid开发艺术探索 读书笔记 第三章">
-<meta name="twitter:description" content="1.ViewGroup继承了View，这意味着View本身就可以是单个控件也可以是又多个控件组成的一组控件，通过这种关系形成了View树的结构。由此，LinearLayout是一个View也是一个ViewGroup，而ViewGroup内部可以又子View，这个子View同样还可以是ViewGroup。2.View中top,left,right,bottom表示View相对于父容器的坐标。而tra">
+<meta name="twitter:description" content="ViewGroup继承了View，这意味着View本身就可以是单个控件也可以是又多个控件组成的一组控件，通过这种关系形成了View树的结构。由此，LinearLayout是一个View也是一个ViewGroup，而ViewGroup内部可以又子View，这个子View同样还可以是ViewGroup。
+View中top,left,right,bottom表示View相对于父容器的坐标。而trans">
 
 
 
@@ -298,11 +301,30 @@
       
 
       
-        <p>1.ViewGroup继承了View，这意味着View本身就可以是单个控件也可以是又多个控件组成的一组控件，通过这种关系形成了View树的结构。由此，LinearLayout是一个View也是一个ViewGroup，而ViewGroup内部可以又子View，这个子View同样还可以是ViewGroup。<br>2.View中top,left,right,bottom表示View相对于父容器的坐标。<br>而translationX表示View相对于left的偏移，x表示偏移后的坐标，所以有：<br>getX() = getLeft() + getTranslationX();<br><a id="more"></a><br>3.通过MotionEvent对象可以获得点击事件发生的x和y坐标，系统提供了两组方法：getX/getY返回相当于当前View左上角的x和y坐标，getRawX/getRawY返回相对于屏幕左上角的x和y的坐标。<br>4.三种实现View滑动的方式：a. View自带的scrollTo/scrollBy方法  b.通过动画（包括View动画和属性动画）为View施加平移效果  c.改变View的LayoutParams使得View重新布局从而实现滑动<br>对比：a. scrollTo/scrollBy方法适用于View内容的滑动<br>b.动画：适用于没有交互性的View或者实现复杂的动画效果<br>c.改变布局参数：适用于有交互的View</p>
-<p>5.scrollBy()方法实际上调用了scrollTo()方法，这两个方法改变的只是View中内容和位置，而不是View本身在布局中的位置。mScrollX = getScrollX()获得的是View中内容左边缘减去View左边缘的像素距离。即内容左边缘在View左边缘的左边时，mScrollX为正。同理，当内容上边缘在View上边缘的上侧时，mScrollY为正。</p>
-<p>6.View动画：是对View影像做操作，它并不能真正改变View的位置（由于这个原因，新位置的View不会拥有原位置View的点击事件），如果希望动画后的状态得以保留，则必须将fillAfter属性设置为true。</p>
-<p>7.属性动画：3.0以上支持，3.0以下需要使用nineoldandroids动画兼容库（此时本质上仍是View动画）。</p>
-<p>8.改变LayoutParams：通过改变margin等参数或者为LinearLayout中添加View来实现View移动。</p>
+        <ol>
+<li>ViewGroup继承了View，这意味着View本身就可以是单个控件也可以是又多个控件组成的一组控件，通过这种关系形成了View树的结构。由此，LinearLayout是一个View也是一个ViewGroup，而ViewGroup内部可以又子View，这个子View同样还可以是ViewGroup。</li>
+<li>View中top,left,right,bottom表示View相对于父容器的坐标。<br>而translationX表示View相对于left的偏移，x表示偏移后的坐标，所以有：<br>getX() = getLeft() + getTranslationX();<a id="more"></a>
+</li>
+</ol>
+<blockquote>
+<p>public float getX ()</p>
+<p>Added in API level 11<br>The visual x position of this view, in pixels. This is equivalent to the translationX property plus the current left property.</p>
+<p>Returns</p>
+<p>The visual x position of this view, in pixels.</p>
+</blockquote>
+<ol>
+<li>通过MotionEvent对象可以获得点击事件发生的x和y坐标，系统提供了两组方法：getX/getY返回相当于当前View左上角的x和y坐标，getRawX/getRawY返回相对于屏幕左上角的x和y的坐标。</li>
+<li><p>三种实现View滑动的方式：a. View自带的scrollTo/scrollBy方法  b.通过动画（包括View动画和属性动画）为View施加平移效果  c.改变View的LayoutParams使得View重新布局从而实现滑动<br>对比：a. scrollTo/scrollBy方法适用于View内容的滑动<br>b.动画：适用于没有交互性的View或者实现复杂的动画效果<br>c.改变布局参数：适用于有交互的View</p>
+</li>
+<li><p>scrollBy()方法实际上调用了scrollTo()方法，这两个方法改变的只是View中内容和位置，而不是View本身在布局中的位置。mScrollX = getScrollX()获得的是View中内容左边缘减去View左边缘的像素距离。即内容左边缘在View左边缘的左边时，mScrollX为正。同理，当内容上边缘在View上边缘的上侧时，mScrollY为正。</p>
+</li>
+<li><p>View动画：是对View影像做操作，它并不能真正改变View的位置（由于这个原因，新位置的View不会拥有原位置View的点击事件），如果希望动画后的状态得以保留，则必须将fillAfter属性设置为true。</p>
+</li>
+<li><p>属性动画：3.0以上支持，3.0以下需要使用nineoldandroids动画兼容库（此时本质上仍是View动画）。</p>
+</li>
+<li><p>改变LayoutParams：通过改变margin等参数或者为LinearLayout中添加View来实现View移动。</p>
+</li>
+</ol>
 
       
     </div>
