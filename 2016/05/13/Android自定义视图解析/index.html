@@ -1,0 +1,810 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,View," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Android框架为我们提供了大量的视图类来帮助我们做好展示信息以及同用户进行交互的工作。然后有时候，我们的app或许需要一些在Android内建视图之外特殊的视图，那么此时我们就需要自定义视图。下面我们来看看如何构建一个具有鲁棒性和可重用的视图。本文主要结合谷歌官方文档和API介绍自定义视图。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android自定义视图解析">
+<meta property="og:url" content="http://yoursite.com/2016/05/13/Android自定义视图解析/index.html">
+<meta property="og:site_name" content="王帅’s Blog">
+<meta property="og:description" content="Android框架为我们提供了大量的视图类来帮助我们做好展示信息以及同用户进行交互的工作。然后有时候，我们的app或许需要一些在Android内建视图之外特殊的视图，那么此时我们就需要自定义视图。下面我们来看看如何构建一个具有鲁棒性和可重用的视图。本文主要结合谷歌官方文档和API介绍自定义视图。">
+<meta property="og:updated_time" content="2016-05-13T05:31:22.760Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android自定义视图解析">
+<meta name="twitter:description" content="Android框架为我们提供了大量的视图类来帮助我们做好展示信息以及同用户进行交互的工作。然后有时候，我们的app或许需要一些在Android内建视图之外特殊的视图，那么此时我们就需要自定义视图。下面我们来看看如何构建一个具有鲁棒性和可重用的视图。本文主要结合谷歌官方文档和API介绍自定义视图。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Android自定义视图解析 | 王帅’s Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+     
+     
+      <span class="site-title">王帅’s Blog</span>
+      
+    </a>
+  </div>
+  <p class="site-subtitle">技术总结分享</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android自定义视图解析
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-13T13:11:43+08:00" content="2016-05-13">
+              2016-05-13
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/13/Android自定义视图解析/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/13/Android自定义视图解析/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/05/13/Android自定义视图解析/" class="leancloud_visitors" data-flag-title="Android自定义视图解析">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>　　Android框架为我们提供了大量的视图类来帮助我们做好展示信息以及同用户进行交互的工作。然后有时候，我们的app或许需要一些在Android内建视图之外特殊的视图，那么此时我们就需要自定义视图。下面我们来看看如何构建一个具有鲁棒性和可重用的视图。本文主要结合谷歌<a href="http://developer.android.com/training/custom-views/index.html" target="_blank" rel="external">官方文档</a>和API介绍自定义视图。<br><a id="more"></a></p>
+<p><strong>第一步：建立一个视图类</strong><br>　　<strong>1.1 继承自View作为View的一个子类</strong><br>        　　一个设计良好的自定义视图类应该和其他设计良好的类一样：封装了丰富的功能、为用户提供了易用的接口、高效的使用CPU和内存等。此外，自定义视图应该：符合Android规范、利用XML提供自定义样式属性、发送访问事件已经兼容不同的Android平台。<br>        在Android框架中，所有的视图类都继承自View类，所有我们的自定义视图类也应该继承自View类或者某些View的子类（比如：Button）。<br>        为了便于ADT和我们的自定义视图进行交互，我们应该提供给一个至少包含Context和AttributeSet作为参数的构造函数。这样的一个构造函数也是布局编辑器可以创建和实例化我们的自定义视图。 </p>
+<pre><code>class PieChart extends View {
+   public PieChart(Context context, AttributeSet attrs) {
+    super(context, attrs);
+    }
+}
+</code></pre><p>　　<strong>1.2  自定义属性</strong>　　<br>        　　当我们添加一个内建的视图时，我们使用XML中的元指定它的外观和行为。设计良好的自定义视图也应该可以通过XML进行添加以及设定样式。为此，我们应该：在一个<declare-styleable>资源中为我们的视图 定义自定义属性、在XML中为属性指定数值、运行时抽取属性值、将抽取的属性值应用于自定义视图。例如，添加一个res/values/attrs.xml </declare-styleable></p>
+<pre><code>1 &lt;resources&gt;
+2    &lt;declare-styleable name=&quot;PieChart&quot;&gt;
+3        &lt;attr name=&quot;showText&quot; format=&quot;boolean&quot; /&gt;
+4        &lt;attr name=&quot;labelPosition&quot; format=&quot;enum&quot;&gt;
+5            &lt;enum name=&quot;left&quot; value=&quot;0&quot;/&gt;
+6            &lt;enum name=&quot;right&quot; value=&quot;1&quot;/&gt;
+7        &lt;/attr&gt;
+8    &lt;/declare-styleable&gt;
+9 &lt;/resources&gt;
+</code></pre><p> 　　 这段代码定义了两个用户属性：showText和labelPosition，它们都属于一个叫做“PieChart”的styleable实体。按照常理，styleable实体的名字应该和自定义视图的名字相同。<br>        当定义好自定义属性时，我们就可以像使用内建属性一样在布局XML文件中使用它们。唯一不同的是，自定义视图改变了命名空间，它不在属于<br><a href="http://schemas.android.com/apk/res/android，而是属于http://schemas.android.com/apk/res/[your" target="_blank" rel="external">http://schemas.android.com/apk/res/android，而是属于http://schemas.android.com/apk/res/[your</a> package name]。 </p>
+<pre><code>1 &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+2 &lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+3    xmlns:custom=&quot;http://schemas.android.com/apk/res/com.example.customviews&quot;&gt;
+4   &lt;com.example.customviews.charting.PieChart
+5      custom:showText=&quot;true&quot;
+6      custom:labelPosition=&quot;left&quot; /&gt;
+7 &lt;/LinearLayout&gt;
+</code></pre><p> 　　  注意：在XML标签中应该使用全名。尤其是当自定义视图是内部类时，必须用外部类来指明。例如：PieChart类有一个内部类叫做PieView，那么我们就应该使用<com.example.customviews.charting.piechart$pieview>标签。  </com.example.customviews.charting.piechart$pieview></p>
+<p>　　<strong>1.3 应用自定义属性</strong><br>        　　当根据XML布局穿件一个View时，所有XML标签中的属性都会被从资源bundle中读取并作为AttributeSet参数传递给构造函数。尽管可以直接从AttributeSet中读取各个属性的值，但是这么做有两个缺点：属性值中引用的资源不会被解析、样式不会被应用。<br>       推荐的做法是：将AttributeSet传递给obtainStyledAttributes()方法。这个方法会返回一个包含已经解析和定义好样式的TypeArray数组。</p>
+<pre><code> 1 public PieChart(Context context, AttributeSet attrs) {
+ 2    super(context, attrs);
+ 3    TypedArray a = context.getTheme().obtainStyledAttributes(
+ 4         attrs,
+ 5         R.styleable.PieChart,
+ 6         0, 0);
+ 7    try {
+ 8        mShowText = a.getBoolean(R.styleable.PieChart_showText, false);
+ 9        mTextPos = a.getInteger(R.styleable.PieChart_labelPosition, 0);
+10    } finally {
+11        a.recycle();
+12    }
+13 }
+</code></pre><p> 　　 TypeArray的作用就是取出每一个对应位置的属性值。我们需要在最后调用recycle()函数，一边以在下一次调用时重用。所有涉及TypeArray的操作都应该在recycle()被调用之前。  
+　  </p>
+<p>　　<strong>1.4 添加属性和事件</strong><br>        　　Attribute可以方便我们定义视图的外观，但是它们只会在初始化时被读取。为了提供动态行为，我们可以为每个自定义属性提供一个getter和setter方法。下面的代码说明了如何提供一个叫做“showText”的属性。</p>
+<pre><code>1 public boolean isShowText() {
+2    return mShowText;
+3 }
+4 public void setShowText(boolean showText) {
+5    mShowText = showText;
+6    invalidate();
+7    requestLayout();
+8 }
+</code></pre><p> 　　注意:需要在进行了可能会改变外观的操作之后调用invalidate()函数和requestLayout()函数，来使得系统重新绘制view，确定大小和形状。这也确保了视图行为的可靠性和可用性。</p>
+<p>　　<strong>1.5  无障碍</strong><br>         　　Android提供了良好的机制来帮助有视觉、听觉以及其他身体限制的用户使用Android设设备。文字语音转换功能、触控反馈、轨迹球以及D-pad等都为用户提供了良好的辅助性功能。 有关详细内容请阅读：<a href="https://developer.android.com/guide/topics/ui/accessibility/index.html" target="_blank" rel="external">https://developer.android.com/guide/topics/ui/accessibility/index.html</a></p>
+<p><strong>第二步：自定义绘图</strong><br>　　<strong>2.1 重载onDraw()方法</strong><br>　　　自定义视图最重要的部分便是它的外观。我们通过重载onDraw()方法来实现自定义的外观。传递给onDraw()方法的参数是Canvas对象，Canvas类定义了绘制文字、线、位图以及其他基本图形的方法。<br>            在调用所有的绘制方法之前，我们需要创建一个Paint对象。<br>　　<strong>2.2 创建Drawing对象</strong><br>　　我们可以简单的做个类比：Canvas好比是一个画布（实际是一个bitmap, 我们自定义的视图都是在这个Bitmap上进行绘制的），而Paint是一个画笔（确定了颜色和样式等信息）。Canvas提供了绘制一条线的方法，而Piant提供了定义这条线颜色的方法。Canvas提供了绘制一个矩形的方法，而Paint定义了这个矩形是否需要填充。总结起来，Canvas定义了绘制在屏幕上的形状，而Paint定义了颜色、字体、样式等。       </p>
+<pre><code> 1 private void init() {
+ 2    mTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+ 3    mTextPaint.setColor(mTextColor);
+ 4    if (mTextHeight == 0) {
+ 5        mTextHeight = mTextPaint.getTextSize();
+ 6    } else {
+ 7        mTextPaint.setTextSize(mTextHeight);
+ 8    }
+ 9    mPiePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+10    mPiePaint.setStyle(Paint.Style.FILL);
+11    mPiePaint.setTextSize(mTextHeight);
+12    mShadowPaint = new Paint(0);
+13    mShadowPaint.setColor(0xff101010);
+14    mShadowPaint.setMaskFilter(new BlurMaskFilter(8, BlurMaskFilter.Blur.NORMAL));
+15    ...
+</code></pre><p>　　提前创建视图是一个很重要的优化的方法，View会被频繁的重新绘制，这会消耗昂贵的资源。如果在onDraw()方法中创建绘图相关的对象将会大大降低性能，导致UI卡顿。上面的代码在构造函数中被调用，从而避免了这个问题。<br>　　＊＊2.3 处理布局事件＊＊　　<br>        为了绘制自定义视图，我们必须知道视图的大小。负责的自定义视图常常需要根据它们显示在屏幕上的大小和形状进行多个布局相关的计算。尽管View提供了处理尺寸的方法，但是其中大部分我们都不需要进行重载。如果我们不需要进行特殊的大小设置，我们只需要重载onSizeChanged()方法。onSizeChanged()会在View第一次被分配大小以及大小改变时被调用。计算位置，分隔符以及其他和View大小相关的操作都在onSizeChanged()中进行。在为View分配大小时，布局管理器默认包含了padding的大小。</p>
+<pre><code>1        // Account for padding
+2        float xpad = (float)(getPaddingLeft() + getPaddingRight());
+3        float ypad = (float)(getPaddingTop() + getPaddingBottom());
+4        // Account for the label
+5        if (mShowText) xpad += mTextWidth;
+6        float ww = (float)w - xpad;
+7        float hh = (float)h - ypad;
+8        // Figure out how big we can make the pie.
+9        float diameter = Math.min(ww, hh);    
+</code></pre><p>  　　如果我们需要更好的控制视图的布局，就需要重载onMeasure()方法。这个方法的参数View.MeasureSpec会告诉父视图希望我们的视图的大小<br>以及是硬性最大值还是建议值。MeasureSpec代表了父类给子类的布局要求的封装。每一个MeasureSpec代表一个宽度和高度的要求，它是大小和模式（共三种模式：1.UNSPECIFIED：父类对子类的大小没有限制，子类可以获得期望的大小。 2.EXACTLY：父类为子类确定了一个确切的大小。3. AT_MOST: 只要不超出指定大小，子类想要多大就多大）的组合。<br>        例：PieChart试图是的自己足够大来来使得饼图和标签大小一样。    </p>
+<pre><code> 1 @Override
+ 2 protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+ 3    // Try for a width based on our minimum
+ 4    int minw = getPaddingLeft() + getPaddingRight() + getSuggestedMinimumWidth();
+ 5    int w = resolveSizeAndState(minw, widthMeasureSpec, 1);
+ 6    // Whatever the width ends up being, ask for a height that would let the pie
+ 7    // get as big as it can
+ 8    int minh = MeasureSpec.getSize(w) - (int)mTextWidth + getPaddingBottom() + getPaddingTop();
+ 9    int h = resolveSizeAndState(MeasureSpec.getSize(w) - (int)mTextWidth, heightMeasureSpec, 0);
+10    setMeasuredDimension(w, h);
+11 }
+</code></pre><p>注意：<br>1.正如前面提及的，这些计算中需要考虑padding。<br>2.resolveSizeAndState()方法用来确认最后个的宽度和高度。它会通过比较期望的大小和传递进onMeasure()方法的spec值来返回一个合适<br>的View.MeasureSpec。除非有引入一个不同大小的限制，否则它会去期望的数值。<br>3.onMeasure()方法没有返回值。它会在通过调用setMeasuredDimension()方法来传递结果。setMeasuredDimension()是强制需要的，如果没有调用它，会抛出运行时异常。  </p>
+<p>　　<strong>2.4 绘制</strong><br>  　　在创建了对象，并且定义的measure代码之后，我们可以开始实现onDraw()方法。每一个View的onDraw()方法都不相同，但是却大部分是有一些共同的操作的：<br>       　　 1. 使用drawText()来绘制Text，使用setTypeface设置字体，使用setColor设置字体颜色。<br>       　　 2. 使用drawRectangular()、drawOval()和drawArc()来绘制基本图形，通过setStyle()方法可以设置填空、边框等样式。<br>        　　3. 使用Path类来绘制复杂图形。通过调用drawPath()为Path添加直线和曲线来绘制图形。同样，可以通过setStyle()方法可以设置填空、边框等样式。<br>       　　 4. 创建LinearGradient来定义渐变，调用setSharder()来使用LinearGradient构建渐变填充。<br>        　　5. 使用drawBitmap()来绘制bitmap。  </p>
+<pre><code> 1 protected void onDraw(Canvas canvas) {
+ 2    super.onDraw(canvas);
+ 3    // Draw the shadow
+ 4    canvas.drawOval(
+ 5            mShadowBounds,
+ 6            mShadowPaint
+ 7    );
+ 8    // Draw the label text
+ 9    canvas.drawText(mData.get(mCurrentItem).mLabel, mTextX, mTextY, mTextPaint);
+10    // Draw the pie slices
+11    for (int i = 0; i &lt; mData.size(); ++i) {
+12        Item it = mData.get(i);
+13        mPiePaint.setShader(it.mShader);
+14        canvas.drawArc(mBounds,
+15                360 - it.mEndAngle,
+16                it.mEndAngle - it.mStartAngle,
+17                true, mPiePaint);
+18    }
+19    // Draw the pointer
+20    canvas.drawLine(mTextX, mPointerY, mPointerX, mPointerY, mTextPaint);
+21    canvas.drawCircle(mPointerX, mPointerY, mPointerSize, mTextPaint);
+22 }
+</code></pre><p>　　其中slice的角度计算如下</p>
+<pre><code>1 for (Item it : mData) {
+2     it.mStartAngle = currentAngle;
+3     it.mEndAngle = (int) ((float) currentAngle + it.mValue * 360.0f / mTotal);
+4     currentAngle = it.mEndAngle;
+5             ...
+6 }
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+            <a href="/tags/View/" rel="tag">#View</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/13/java-byte中存储大于0x7E的十六进制数/" rel="next" title="java byte中存储大于0x7E的十六进制数">
+                <i class="fa fa-chevron-left"></i> java byte中存储大于0x7E的十六进制数
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/13/Android自定义视图解析/"
+           data-title="Android自定义视图解析" data-url="http://yoursite.com/2016/05/13/Android自定义视图解析/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="ShuaiWang" />
+          <p class="site-author-name" itemprop="name">ShuaiWang</p>
+          <p class="site-description motion-element" itemprop="description">Android Developer</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ShuaiWang</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"smartshuai"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("xjBCfsbvr9Ty15F8V0sDoLEg-gzGzoHsz", "AriBdjO1fvnvYS8IzPrEd2sz");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>
