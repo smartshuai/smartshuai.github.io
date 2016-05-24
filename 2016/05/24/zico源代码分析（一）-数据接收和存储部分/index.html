@@ -93,7 +93,7 @@
 <meta property="og:description" content="zorka和zico的代码地址：https://github.com/jitlogic
 　　由于zico是zorka的collecter端，所以在介绍zico之前首先说一下zorka和数据结构化存储和传输的部分。zorka抓取到数据后，会封装成一条TraceRecord，TraceRecord中包含本条trace的类，方法，调用链等信息，但是这些信息都是将对应的ID存在TraceRecord，">
 <meta property="og:image" content="http://i.imgur.com/nA5bkN8.png">
-<meta property="og:updated_time" content="2016-05-24T10:16:37.385Z">
+<meta property="og:updated_time" content="2016-05-24T10:23:06.716Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="zico源代码分析（一） 数据接收和存储部分">
 <meta name="twitter:description" content="zorka和zico的代码地址：https://github.com/jitlogic
@@ -304,7 +304,7 @@
 
       
         <p>　　zorka和zico的代码地址：<a href="https://github.com/jitlogic" target="_blank" rel="external">https://github.com/jitlogic</a></p>
-<p>　　由于zico是zorka的collecter端，所以在介绍zico之前首先说一下zorka和数据结构化存储和传输的部分。zorka抓取到数据后，会封装成一条TraceRecord，TraceRecord中包含本条trace的类，方法，调用链等信息，但是这些信息都是将对应的ID存在TraceRecord，而ID对应的详细信息会存在Symbol中，也就是说Symbol相当于一个数据字典。在传送和存储的之前会进行打TAG操作，已经来标记一条信息是Symbol的一个条目或者是TraceRecord中的一个条目。</p>
+<p>　　由于zico是zorka的collecter端，所以在介绍zico之前首先说一下zorka和数据结构化存储和传输的部分。zorka抓取到数据后，会封装成一条TraceRecord，TraceRecord中包含本条trace的类，方法，调用链等信息，但是这些信息都是将对应的ID存在TraceRecord，而ID对应的详细信息会存在Symbol中，也就是说Symbol相当于一个数据字典。在传送和存储的之前会进行打TAG操作，已经来标记一条信息是Symbol的一个条目或者是TraceRecord中的一个条目。<br><a id="more"></a></p>
 <p><strong>第一部分 zico工作步骤</strong></p>
 <p>　　首先，先试着理一下Zico工作的主要步骤：</p>
 <p>　　ZicoServer通过socket建立连接，在run()方法中新建了ZicoServerConnector（继承自ZicoConnector），ZicoServerConnector中的核心部分是runCycle()函数。</p>
