@@ -94,7 +94,7 @@
 <meta property="og:image" content="http://i.imgur.com/wnGF4wV.png">
 <meta property="og:image" content="http://i.imgur.com/OVGT3IQ.png">
 <meta property="og:image" content="http://i.imgur.com/Qk8DsKC.png">
-<meta property="og:updated_time" content="2016-05-24T14:30:54.883Z">
+<meta property="og:updated_time" content="2016-05-24T14:33:04.939Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="zico源代码分析（二）-数据读取和解析部分">
 <meta name="twitter:description" content="第一部分：分析篇首先，看一下zico的页面，左侧是hostname panel，右侧是该主机对应的traces panel。点击左侧zorka主机名，右侧panel会更新信息，在火狐浏览器中使用firebug插件我们可以看到请求的URL。">
@@ -304,7 +304,7 @@
 
       
         <h1 id="第一部分：分析篇"><a href="#第一部分：分析篇" class="headerlink" title="第一部分：分析篇"></a>第一部分：分析篇</h1><p>首先，看一下zico的页面，左侧是hostname panel，右侧是该主机对应的traces panel。<br><img src="http://i.imgur.com/5L4ZrFc.png" alt=""><br>点击左侧zorka主机名，右侧panel会更新信息，在火狐浏览器中使用firebug插件我们可以看到请求的URL。<br><a id="more"></a><br>其中关键是第二条：/traces/search<br><img src="http://i.imgur.com/wnGF4wV.png" alt=""><br><img src="http://i.imgur.com/OVGT3IQ.png" alt=""></p>
-<p>根据/traces/search这个URL我们试着在代码中找找线索。可以看到TraceDataService类有@Path(“/traces”)注解，而其方法searchTraces上有 @Path(“/search”)标记，所以，POST <a href="http://localhost:8642/data/traces/search这条请求执行了TraceDataService类中的searchTraces函数。此处原理不清楚的可以查看：http://www.360doc.com/content/11/1214/18/1542811_172254934.shtml" target="_blank" rel="external">http://localhost:8642/data/traces/search这条请求执行了TraceDataService类中的searchTraces函数。此处原理不清楚的可以查看：http://www.360doc.com/content/11/1214/18/1542811_172254934.shtml</a></p>
+<p>根据/traces/search这个URL我们试着在代码中找找线索。可以看到TraceDataService类有@Path(“/traces”)注解，而其方法searchTraces上有 @Path(“/search”)标记，所以，POST <a href="http://localhost:8642/data/traces/search" target="_blank" rel="external">http://localhost:8642/data/traces/search</a> 这条请求执行了TraceDataService类中的searchTraces函数。 此处原理不清楚的可以查看： <a href="http://www.360doc.com/content/11/1214/18/1542811_172254934.shtml" target="_blank" rel="external">http://www.360doc.com/content/11/1214/18/1542811_172254934.shtml</a></p>
 <pre>
 @Path("/traces")
 public class TraceDataService {
