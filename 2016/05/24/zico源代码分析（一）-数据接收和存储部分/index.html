@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="APM,源码分析," />
 
 
 
@@ -84,15 +84,21 @@
 
 
 
-<meta name="description" content="Android Developer">
-<meta property="og:type" content="website">
-<meta property="og:title" content="王帅’s Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="zorka和zico的代码地址：https://github.com/jitlogic
+　　由于zico是zorka的collecter端，所以在介绍zico之前首先说一下zorka和数据结构化存储和传输的部分。zorka抓取到数据后，会封装成一条TraceRecord，TraceRecord中包含本条trace的类，方法，调用链等信息，但是这些信息都是将对应的ID存在TraceRecord，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="zico源代码分析（一） 数据接收和存储部分">
+<meta property="og:url" content="http://yoursite.com/2016/05/24/zico源代码分析（一）-数据接收和存储部分/index.html">
 <meta property="og:site_name" content="王帅’s Blog">
-<meta property="og:description" content="Android Developer">
+<meta property="og:description" content="zorka和zico的代码地址：https://github.com/jitlogic
+　　由于zico是zorka的collecter端，所以在介绍zico之前首先说一下zorka和数据结构化存储和传输的部分。zorka抓取到数据后，会封装成一条TraceRecord，TraceRecord中包含本条trace的类，方法，调用链等信息，但是这些信息都是将对应的ID存在TraceRecord，">
+<meta property="og:image" content="http://i.imgur.com/nA5bkN8.png">
+<meta property="og:updated_time" content="2016-05-24T10:16:37.385Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="王帅’s Blog">
-<meta name="twitter:description" content="Android Developer">
+<meta name="twitter:title" content="zico源代码分析（一） 数据接收和存储部分">
+<meta name="twitter:description" content="zorka和zico的代码地址：https://github.com/jitlogic
+　　由于zico是zorka的collecter端，所以在介绍zico之前首先说一下zorka和数据结构化存储和传输的部分。zorka抓取到数据后，会封装成一条TraceRecord，TraceRecord中包含本条trace的类，方法，调用链等信息，但是这些信息都是将对应的ID存在TraceRecord，">
+<meta name="twitter:image" content="http://i.imgur.com/nA5bkN8.png">
 
 
 
@@ -110,7 +116,7 @@
   };
 </script>
 
-  <title> 王帅’s Blog </title>
+  <title> zico源代码分析（一） 数据接收和存储部分 | 王帅’s Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -131,9 +137,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -221,9 +225,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -243,10 +247,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/05/24/zico源代码分析（一）-数据接收和存储部分/" itemprop="url">
-                  zico源代码分析（一） 数据接收和存储部分
-                </a>
+                zico源代码分析（一） 数据接收和存储部分
               
             
           </h1>
@@ -302,9 +303,7 @@
       
 
       
-        
-          
-            <p>　　zorka和zico的代码地址：<a href="https://github.com/jitlogic" target="_blank" rel="external">https://github.com/jitlogic</a></p>
+        <p>　　zorka和zico的代码地址：<a href="https://github.com/jitlogic" target="_blank" rel="external">https://github.com/jitlogic</a></p>
 <p>　　由于zico是zorka的collecter端，所以在介绍zico之前首先说一下zorka和数据结构化存储和传输的部分。zorka抓取到数据后，会封装成一条TraceRecord，TraceRecord中包含本条trace的类，方法，调用链等信息，但是这些信息都是将对应的ID存在TraceRecord，而ID对应的详细信息会存在Symbol中，也就是说Symbol相当于一个数据字典。在传送和存储的之前会进行打TAG操作，已经来标记一条信息是Symbol的一个条目或者是TraceRecord中的一个条目。</p>
 <p><strong>第一部分 zico工作步骤</strong></p>
 <p>　　首先，先试着理一下Zico工作的主要步骤：</p>
@@ -584,598 +583,60 @@ public synchronized void open() {
         }
     }
  </integer,set<integer></integer,></long,></pre>
-          
+      
+    </div>
+
+    <div>
+      
         
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/13/Android自定义视图解析/" itemprop="url">
-                  Android自定义视图解析
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-13T13:11:43+08:00" content="2016-05-13">
-              2016-05-13
-            </time>
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/APM/" rel="tag">#APM</a>
           
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/13/Android自定义视图解析/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/13/Android自定义视图解析/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/05/13/Android自定义视图解析/" class="leancloud_visitors" data-flag-title="Android自定义视图解析">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
+            <a href="/tags/源码分析/" rel="tag">#源码分析</a>
           
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <p>　　Android框架为我们提供了大量的视图类来帮助我们做好展示信息以及同用户进行交互的工作。然后有时候，我们的app或许需要一些在Android内建视图之外特殊的视图，那么此时我们就需要自定义视图。下面我们来看看如何构建一个具有鲁棒性和可重用的视图。本文主要结合谷歌<a href="http://developer.android.com/training/custom-views/index.html">官方文档</a>和API介绍自定义视图。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/05/13/Android自定义视图解析/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/13/Android自定义视图解析/" rel="next" title="Android自定义视图解析">
+                <i class="fa fa-chevron-left"></i> Android自定义视图解析
+              </a>
+            
           </div>
-        
-      
-    </div>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+          <div class="post-nav-prev post-nav-item">
             
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/13/java-byte中存储大于0x7E的十六进制数/" itemprop="url">
-                  java byte中存储大于0x7E的十六进制数
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-13T13:03:31+08:00" content="2016-05-13">
-              2016-05-13
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/13/java-byte中存储大于0x7E的十六进制数/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/13/java-byte中存储大于0x7E的十六进制数/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/05/13/java-byte中存储大于0x7E的十六进制数/" class="leancloud_visitors" data-flag-title="java byte中存储大于0x7E的十六进制数">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <p><strong>问题</strong>：在做一个Android app和arm开发板进行交互的程序中，遇到一个问题，Java byte中无法直接存储大于0x7E的十六进制，但是C语言却可以。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/05/13/java-byte中存储大于0x7E的十六进制数/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-      
 
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/13/利用zip格式实现手机客户端二维码扫描分享识别/" itemprop="url">
-                  利用zip格式实现手机客户端二维码扫描分享识别
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-13T12:59:54+08:00" content="2016-05-13">
-              2016-05-13
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/13/利用zip格式实现手机客户端二维码扫描分享识别/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/13/利用zip格式实现手机客户端二维码扫描分享识别/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/05/13/利用zip格式实现手机客户端二维码扫描分享识别/" class="leancloud_visitors" data-flag-title="利用zip格式实现手机客户端二维码扫描分享识别">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><strong>场景：</strong> 用户A想要将某应用推荐给用户B，用户B扫描用户A的手机app中的二维码进行下载和安装, 并且需要识别用户B是扫描了用户A的二维码，进而给用户A一定的奖励。 （例如：健一网app）<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/05/13/利用zip格式实现手机客户端二维码扫描分享识别/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
+    <div class="post-spread">
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/13/有关创业团队和执行力的想法/" itemprop="url">
-                  有关创业团队和执行力的想法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-13T12:49:52+08:00" content="2016-05-13">
-              2016-05-13
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/13/有关创业团队和执行力的想法/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/13/有关创业团队和执行力的想法/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/05/13/有关创业团队和执行力的想法/" class="leancloud_visitors" data-flag-title="有关创业团队和执行力的想法">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>　　在假装程序员的路上，有幸遇到了三个创业团队，经历的故事不同，经验和教训各自不同。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/05/13/有关创业团队和执行力的想法/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/13/Andorid开发艺术探索-读书笔记-第三章/" itemprop="url">
-                  Andorid开发艺术探索 读书笔记 第三章
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-13T02:09:32+08:00" content="2016-05-13">
-              2016-05-13
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/13/Andorid开发艺术探索-读书笔记-第三章/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/13/Andorid开发艺术探索-读书笔记-第三章/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/05/13/Andorid开发艺术探索-读书笔记-第三章/" class="leancloud_visitors" data-flag-title="Andorid开发艺术探索 读书笔记 第三章">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <ol>
-<li>ViewGroup继承了View，这意味着View本身就可以是单个控件也可以是又多个控件组成的一组控件，通过这种关系形成了View树的结构。由此，LinearLayout是一个View也是一个ViewGroup，而ViewGroup内部可以又子View，这个子View同样还可以是ViewGroup。</li>
-<li>View中top,left,right,bottom表示View相对于父容器的坐标。而translationX表示View相对于left的偏移，x表示偏移后的坐标，所以有：getX() = getLeft() + getTranslationX();
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/05/13/Andorid开发艺术探索-读书笔记-第三章/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
@@ -1183,6 +644,14 @@ public synchronized void open() {
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/24/zico源代码分析（一）-数据接收和存储部分/"
+           data-title="zico源代码分析（一） 数据接收和存储部分" data-url="http://yoursite.com/2016/05/24/zico源代码分析（一）-数据接收和存储部分/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -1202,8 +671,17 @@ public synchronized void open() {
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -1246,6 +724,17 @@ public synchronized void open() {
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -1340,6 +829,10 @@ public synchronized void open() {
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
