@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Java," />
+  <meta name="keywords" content="APM,源码分析," />
 
 
 
@@ -84,16 +84,21 @@
 
 
 
-<meta name="description" content="问题：在做一个Android app和arm开发板进行交互的程序中，遇到一个问题，Java byte中无法直接存储大于0x7E的十六进制，但是C语言却可以。">
+<meta name="description" content="第一部分：分析篇首先，看一下zico的页面，左侧是hostname panel，右侧是该主机对应的traces panel。点击左侧zorka主机名，右侧panel会更新信息，在火狐浏览器中使用firebug插件我们可以看到请求的URL。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java byte中存储大于0x7E的十六进制数">
-<meta property="og:url" content="http://yoursite.com/2016/05/13/java-byte中存储大于0x7E的十六进制数/index.html">
+<meta property="og:title" content="zico源代码分析（二）-数据读取和解析部分">
+<meta property="og:url" content="http://yoursite.com/2016/05/24/zico源代码分析（二）-数据读取和解析部分/index.html">
 <meta property="og:site_name" content="王帅’s Blog">
-<meta property="og:description" content="问题：在做一个Android app和arm开发板进行交互的程序中，遇到一个问题，Java byte中无法直接存储大于0x7E的十六进制，但是C语言却可以。">
-<meta property="og:updated_time" content="2016-05-13T05:09:32.875Z">
+<meta property="og:description" content="第一部分：分析篇首先，看一下zico的页面，左侧是hostname panel，右侧是该主机对应的traces panel。点击左侧zorka主机名，右侧panel会更新信息，在火狐浏览器中使用firebug插件我们可以看到请求的URL。">
+<meta property="og:image" content="http://i.imgur.com/5L4ZrFc.png">
+<meta property="og:image" content="http://i.imgur.com/wnGF4wV.png">
+<meta property="og:image" content="http://i.imgur.com/OVGT3IQ.png">
+<meta property="og:image" content="http://i.imgur.com/Qk8DsKC.png">
+<meta property="og:updated_time" content="2016-05-24T14:30:54.883Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java byte中存储大于0x7E的十六进制数">
-<meta name="twitter:description" content="问题：在做一个Android app和arm开发板进行交互的程序中，遇到一个问题，Java byte中无法直接存储大于0x7E的十六进制，但是C语言却可以。">
+<meta name="twitter:title" content="zico源代码分析（二）-数据读取和解析部分">
+<meta name="twitter:description" content="第一部分：分析篇首先，看一下zico的页面，左侧是hostname panel，右侧是该主机对应的traces panel。点击左侧zorka主机名，右侧panel会更新信息，在火狐浏览器中使用firebug插件我们可以看到请求的URL。">
+<meta name="twitter:image" content="http://i.imgur.com/5L4ZrFc.png">
 
 
 
@@ -111,7 +116,7 @@
   };
 </script>
 
-  <title> java byte中存储大于0x7E的十六进制数 | 王帅’s Blog </title>
+  <title> zico源代码分析（二）-数据读取和解析部分 | 王帅’s Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -242,7 +247,7 @@
             
             
               
-                java byte中存储大于0x7E的十六进制数
+                zico源代码分析（二）-数据读取和解析部分
               
             
           </h1>
@@ -254,8 +259,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-13T13:03:31+08:00" content="2016-05-13">
-              2016-05-13
+            <time itemprop="dateCreated" datetime="2016-05-24T22:30:14+08:00" content="2016-05-24">
+              2016-05-24
             </time>
           </span>
 
@@ -265,8 +270,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/13/java-byte中存储大于0x7E的十六进制数/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/13/java-byte中存储大于0x7E的十六进制数/" itemprop="commentsCount"></span>
+                <a href="/2016/05/24/zico源代码分析（二）-数据读取和解析部分/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/24/zico源代码分析（二）-数据读取和解析部分/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -276,7 +281,7 @@
 
           
           
-             <span id="/2016/05/13/java-byte中存储大于0x7E的十六进制数/" class="leancloud_visitors" data-flag-title="java byte中存储大于0x7E的十六进制数">
+             <span id="/2016/05/24/zico源代码分析（二）-数据读取和解析部分/" class="leancloud_visitors" data-flag-title="zico源代码分析（二）-数据读取和解析部分">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -298,13 +303,61 @@
       
 
       
-        <p><strong>问题</strong>：在做一个Android app和arm开发板进行交互的程序中，遇到一个问题，Java byte中无法直接存储大于0x7E的十六进制，但是C语言却可以。<br><a id="more"></a><br>出现这个状况的<strong>原因</strong>是：Java中是byte存储的是有符号数，且并没有提供无符号的byte类型，因此在其表示范围为-128-127之间。</p>
-<p><strong>处理方法：</strong>对于大于0x7E数，我们使用内联转换（inline conversion）进行处理后存入，如下所示。</p>
-<pre><code>private   byte test_01 = (byte)0x7E;  //正确
-private   byte test_02 = (byte)0x7E;  //正确
-private   byte test_03 = 0x80;        //错误
-private   byte test_04 = (byte)0x80;  //正确
-</code></pre>
+        <h1 id="第一部分：分析篇"><a href="#第一部分：分析篇" class="headerlink" title="第一部分：分析篇"></a>第一部分：分析篇</h1><p>首先，看一下zico的页面，左侧是hostname panel，右侧是该主机对应的traces panel。<br><img src="http://i.imgur.com/5L4ZrFc.png" alt=""><br>点击左侧zorka主机名，右侧panel会更新信息，在火狐浏览器中使用firebug插件我们可以看到请求的URL。<br><a id="more"></a><br>其中关键是第二条：/traces/search<br><img src="http://i.imgur.com/wnGF4wV.png" alt=""><br><img src="http://i.imgur.com/OVGT3IQ.png" alt=""></p>
+<p>根据/traces/search这个URL我们试着在代码中找找线索。可以看到TraceDataService类有@Path(“/traces”)注解，而其方法searchTraces上有 @Path(“/search”)标记，所以，POST <a href="http://localhost:8642/data/traces/search这条请求执行了TraceDataService类中的searchTraces函数。此处原理不清楚的可以查看：http://www.360doc.com/content/11/1214/18/1542811_172254934.shtml" target="_blank" rel="external">http://localhost:8642/data/traces/search这条请求执行了TraceDataService类中的searchTraces函数。此处原理不清楚的可以查看：http://www.360doc.com/content/11/1214/18/1542811_172254934.shtml</a></p>
+<pre>
+@Path("/traces")
+public class TraceDataService {
+
+    private final static Logger log = LoggerFactory.getLogger(TraceDataService.class);
+
+    @Inject
+    private HostStoreManager storeManager;
+
+    @Inject
+    private UserContext userContext;
+
+    @POST
+    @Path("/search")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+
+    public TraceInfoSearchResult searchTraces(TraceInfoSearchQuery query) {
+
+        userContext.checkHostAccess(query.getHostName());
+        try {
+            HostStore host = storeManager.getHost(query.getHostName(), false);
+            if (host == null) {
+                throw new ZicoRuntimeException("Unknown host: " + query.getHostName());
+            }
+            return host.search(query);
+        } catch (EqlParseException e) {
+            log.error("Error while parsing eql query '" + query.getSearchExpr() + "'\n" + e, e);
+            throw new ZicoRuntimeException(e.toString() + " [query '" + query.getSearchExpr() + "']", e);
+        } catch (EqlException e) {
+            log.error("Error searching for traces", e);
+            throw new ZicoRuntimeException(e.toString() + " [query '" + query.getSearchExpr() + "']", e);
+        } catch (Exception e) {
+            log.error("Error searching for traces", e);
+            throw new ZicoRuntimeException("Error while searching '" + query.getSearchExpr() + "': " + e.getMessage(), e);
+        }
+    }
+</pre>
+
+<p>分析查找数据的过程：TraceDataService执行searchTraces函数（在searchTraces函数中会将query的条件作为参数传入）并返回一个TraceInfoSearchResult对象，TraceInfoSearchResult中包含一个TraceInfo的List，而一个TraceInfo对象就是最后显示在网页上的一条信息。</p>
+<p>在searchTraces函数中首先根据query查询出对象hostStore对象，然后执行此hostStore对象的search()函数。</p>
+<p>所以我们需要看一下HostStore的search()函数。在search()函数最后调用了toTraceInfo()方法，toTraceInfo()方法会将TraceInfoRecord和TraceRecord的信息综合起来形成TraceInfo。</p>
+<h1 id="第二部分-验证篇"><a href="#第二部分-验证篇" class="headerlink" title="第二部分 验证篇"></a>第二部分 验证篇</h1><p>为了进一步验证上面的想法，我在TraceDataService的public TraceInfoSearchResult searchTraces(TraceInfoSearchQuery query)方法第一句的位置加入<br>    System.out.println(“—-&gt;&gt;searchTraces() “);<br>在HostStore的search()函数最后一句return之前加入</p>
+<pre><code>System.out.println(result.getResults().get(0).toString());
+</code></pre><p>同时再TraceInfo类中覆盖了toString方法</p>
+<pre><code>public String toString() {
+    return &quot;----&gt;&gt;TraceInfo: &quot; + &quot; hostName:&quot; + hostName +  &quot; calls:&quot; + calls
+            + &quot; description:&quot; + description;
+}
+</code></pre><p>完成这些后，debug一下，发现在zico页面左侧的hostname panel中点击一个主机名，此时会输出”—-&gt;&gt;searchTraces() “这句话，这也表明，当我们点击一个主机名后，便执行了searchTraces()来查询该主机的trace信息。而在searchTraces()函数返回结果之前，zico页面中右侧traces panel是没有内容的。</p>
+<p>继续执行，输出了第一条traceInfo的信息如下</p>
+<p><pre><br>—-&gt;&gt;TraceInfo:  hostName:zorka calls:19 description:HTTP|/|200|localhost:8080|keep-alive|text/html,application/xhtml+xml,application/xml;q=|Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/53|gzip, deflate, sdch|zh-CN,zh;q=0.8<br>18:22:01.188 [org.eclipse.jetty.server.session.HashSessionManager@2a266d09Timer] DEBUG org.eclipse.jetty.server.session - Scavenging sessions at 1432722121188<br></pre><br>把上面这条信息和zico页面中的信息进行比较，发现是一致的，这也验证了每个TraceInfo代表网页中显示的一条记录。<br><img src="http://i.imgur.com/Qk8DsKC.png" alt=""></p>
+
       
     </div>
 
@@ -325,7 +378,9 @@ private   byte test_04 = (byte)0x80;  //正确
       
         <div class="post-tags">
           
-            <a href="/tags/Java/" rel="tag">#Java</a>
+            <a href="/tags/APM/" rel="tag">#APM</a>
+          
+            <a href="/tags/源码分析/" rel="tag">#源码分析</a>
           
         </div>
       
@@ -334,17 +389,13 @@ private   byte test_04 = (byte)0x80;  //正确
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/13/利用zip格式实现手机客户端二维码扫描分享识别/" rel="next" title="利用zip格式实现手机客户端二维码扫描分享识别">
-                <i class="fa fa-chevron-left"></i> 利用zip格式实现手机客户端二维码扫描分享识别
+              <a href="/2016/05/24/zico源代码分析（一）-数据接收和存储部分/" rel="next" title="zico源代码分析（一） 数据接收和存储部分">
+                <i class="fa fa-chevron-left"></i> zico源代码分析（一） 数据接收和存储部分
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/13/Android自定义视图解析/" rel="prev" title="Android自定义视图解析">
-                Android自定义视图解析 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -370,8 +421,8 @@ private   byte test_04 = (byte)0x80;  //正确
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/05/13/java-byte中存储大于0x7E的十六进制数/"
-           data-title="java byte中存储大于0x7E的十六进制数" data-url="http://yoursite.com/2016/05/13/java-byte中存储大于0x7E的十六进制数/">
+      <div class="ds-thread" data-thread-key="2016/05/24/zico源代码分析（二）-数据读取和解析部分/"
+           data-title="zico源代码分析（二）-数据读取和解析部分" data-url="http://yoursite.com/2016/05/24/zico源代码分析（二）-数据读取和解析部分/">
       </div>
     
   </div>
@@ -455,7 +506,7 @@ private   byte test_04 = (byte)0x80;  //正确
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第一部分：分析篇"><span class="nav-number">1.</span> <span class="nav-text">第一部分：分析篇</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第二部分-验证篇"><span class="nav-number">2.</span> <span class="nav-text">第二部分 验证篇</span></a></li></ol></div>
             
           </div>
         </section>
