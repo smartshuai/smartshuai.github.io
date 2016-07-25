@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="程序人生," />
+  <meta name="keywords" content="翻译," />
 
 
 
@@ -84,16 +84,55 @@
 
 
 
-<meta name="description" content="在假装程序员的路上，有幸遇到了三个创业团队，经历的故事不同，经验和教训各自不同。">
+<meta name="description" content="第一部分 core API
+第二章  类
+2.1.1概观
+编译后的类包括：
+
+一个描述部分：包括修饰语（比如public或private）、名字、父类、接口或者注释区域。
+
+
+类中每个域声明的部分。
+
+
+类中每个方法以及构造函数声明的部分。也包含了方法编译后的代码，它是一系列Java字节码指令的形式。
+
+编译后的类结构如下：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="有关创业团队和执行力的想法">
-<meta property="og:url" content="http://yoursite.com/2016/05/13/有关创业团队和执行力的想法/index.html">
+<meta property="og:title" content="ASM学习笔记--ASM 4 user guide 第二章要点翻译总结">
+<meta property="og:url" content="http://yoursite.com/2016/07/25/ASM学习笔记-ASM-4-user-guide-第二章要点翻译总结/index.html">
 <meta property="og:site_name" content="王帅’s Blog">
-<meta property="og:description" content="在假装程序员的路上，有幸遇到了三个创业团队，经历的故事不同，经验和教训各自不同。">
-<meta property="og:updated_time" content="2016-05-13T04:58:21.034Z">
+<meta property="og:description" content="第一部分 core API
+第二章  类
+2.1.1概观
+编译后的类包括：
+
+一个描述部分：包括修饰语（比如public或private）、名字、父类、接口或者注释区域。
+
+
+类中每个域声明的部分。
+
+
+类中每个方法以及构造函数声明的部分。也包含了方法编译后的代码，它是一系列Java字节码指令的形式。
+
+编译后的类结构如下：">
+<meta property="og:updated_time" content="2016-07-25T12:30:53.105Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="有关创业团队和执行力的想法">
-<meta name="twitter:description" content="在假装程序员的路上，有幸遇到了三个创业团队，经历的故事不同，经验和教训各自不同。">
+<meta name="twitter:title" content="ASM学习笔记--ASM 4 user guide 第二章要点翻译总结">
+<meta name="twitter:description" content="第一部分 core API
+第二章  类
+2.1.1概观
+编译后的类包括：
+
+一个描述部分：包括修饰语（比如public或private）、名字、父类、接口或者注释区域。
+
+
+类中每个域声明的部分。
+
+
+类中每个方法以及构造函数声明的部分。也包含了方法编译后的代码，它是一系列Java字节码指令的形式。
+
+编译后的类结构如下：">
 
 
 
@@ -111,7 +150,7 @@
   };
 </script>
 
-  <title> 有关创业团队和执行力的想法 | 王帅’s Blog </title>
+  <title> ASM学习笔记--ASM 4 user guide 第二章要点翻译总结 | 王帅’s Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -242,7 +281,7 @@
             
             
               
-                有关创业团队和执行力的想法
+                ASM学习笔记--ASM 4 user guide 第二章要点翻译总结
               
             
           </h1>
@@ -254,8 +293,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-13T12:49:52+08:00" content="2016-05-13">
-              2016-05-13
+            <time itemprop="dateCreated" datetime="2016-07-25T20:23:27+08:00" content="2016-07-25">
+              2016-07-25
             </time>
           </span>
 
@@ -265,8 +304,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/13/有关创业团队和执行力的想法/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/13/有关创业团队和执行力的想法/" itemprop="commentsCount"></span>
+                <a href="/2016/07/25/ASM学习笔记-ASM-4-user-guide-第二章要点翻译总结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/25/ASM学习笔记-ASM-4-user-guide-第二章要点翻译总结/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -276,7 +315,7 @@
 
           
           
-             <span id="/2016/05/13/有关创业团队和执行力的想法/" class="leancloud_visitors" data-flag-title="有关创业团队和执行力的想法">
+             <span id="/2016/07/25/ASM学习笔记-ASM-4-user-guide-第二章要点翻译总结/" class="leancloud_visitors" data-flag-title="ASM学习笔记--ASM 4 user guide 第二章要点翻译总结">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -298,11 +337,83 @@
       
 
       
-        <p>　　在假装程序员的路上，有幸遇到了三个创业团队，经历的故事不同，经验和教训各自不同。<br><a id="more"></a><br>　　第一个团队是一个做定制ROM的团队。什么是定制ROM，想一想MIUI， Flyme和EMUI。我是这个团队的005号员工，也是001号实习生。人生中第一个Android的HelloWorld也只在这里写下的。刚开始公司安排我阅读Android Contacts 和ContactsCommon源代码，并根据需求做相应的修改，虽然阅读Google工程师编写的源代码好处大大，但是这对于刚接触Android开发的我来说还是有点困难了。当时想要不要先停下来，从头扎扎实实的把Android基础知识先学一遍，当然也想过放弃，经过和001沟通后，决定让我暂时放下Contacts的工作，先写一个独立的小模块。这样，我便编写了批量安装、批量卸载以及自启动管理三个模块。也就是这个过程中，我学会了使用Listview和Adapter，学会新建Bean类，学会了在实践中学习。这段时间我基本白天工作，晚上熬夜看书看相关知识，经历了痛苦的三个月，但也是收获颇丰的三个月，真心感谢001和002在技术上的帮助。</p>
-<p>　　这个团队现在依然活跃，并且规模有所扩大，有稳定的投资人。001号是前华为员工，反编译经历牛逼闪闪。002号从本科开始在外实习，项目经历丰富，跟随001多年。我想说，001和002几乎是整个团队的项目支撑，所有的难题都是他们在解决。这估计也是这个团队能活到现在的原因，只要技术足够牛逼，加上好的执行力，就肯定会有有效产出，有产出就不会缺钱。我还是公司实习的时候，番茄花园的前投资人见001，001在会谈后说：这个投资人我们接触很久了，但是一直没有接受投资，因为我们觉得现在活的挺滋润的。</p>
-<p>　　第二个团队是做APM的，创始人是国外某D姓氏做监控软件的公司的经理，有来自新加坡投资人的稳定投资。项目想法很好：免费为用户提供APM软件，通过提供咨询收费。但当我写下这篇文字的时候，这个团队已经死掉了，究其根本原因：执行力太低。一个创业公司找了一大堆在校学生做兼职，原本执行力就差，加上几个创始人各有各的事情，没有一个技术主心骨，也没有人可以静下心来解决技术问题，使得项目进展一拖再拖，最终被拖死。</p>
-<p>　　第三个团队做智能家居，创始人是艾默生某项目经历。创始人辞职后全职创业，亲力亲为。但也许经历的风雨太少，也许是还未融资，总体做事风格不够大气，张口闭口谈钱，让人觉得很不舒服。比起几千元的得失，个人觉得创业团队更应该考虑执行力，如果一个项目可以高质量的早点完成，那么就可以早点融资，好日子就会早点到来。另外，如果有商业机密不愿意和员工分享，那就不要说出来，而不要告诉员工说：“我有点子，但是不能告诉你”。至于这个团队后续会如何，我也在好奇观望中。</p>
-<p>　　个人思考认为有两点对创业团队尤其重要：钱和执行力。然而这两者又是相辅相成的，有执行力有产出，必然会有投资人人投资。有了足够的资金，当然对项目进展有好处。关于执行力，个人认为最重要的还是技术本身，要么创始人是技术大牛，要么团队有技术大牛带领，这些技术大牛可以给整个项目进展极大地推进动力，他们本身才是创业初期最大的资本。</p>
+        <p>第一部分 core API</p>
+<p>第二章  类</p>
+<p>2.1.1概观</p>
+<p>编译后的类包括：</p>
+<ul>
+<li>一个描述部分：包括修饰语（比如public或private）、名字、父类、接口或者注释区域。</li>
+</ul>
+<ul>
+<li>类中每个域声明的部分。</li>
+</ul>
+<ul>
+<li>类中每个方法以及构造函数声明的部分。也包含了方法编译后的代码，它是一系列Java字节码指令的形式。</li>
+</ul>
+<p>编译后的类结构如下：</p>
+<a id="more"></a>
+<p>2.1.2内部名（internal name）</p>
+<p>类或者接口使用内部名，内部名就是类的全限定名，即带斜杠的全称。</p>
+<p>  例如，String的internal name为 java/lang/String.</p>
+<p>2.1.3类型描述符</p>
+<p>内部名只被用在类或者接口名字。其他的使用类型描述符。</p>
+<p>String is Ljava/lang/String；</p>
+<p>类的描述符以L开头，以分号结尾。</p>
+<p>数组类型以方括号开头。</p>
+<p>2.1.4方法描述</p>
+<p>方法描述符以圆括号开始，圆括号中是每个参数的类型（每个参数类型连着写，之间没有空格或者逗号之类），圆括号后面是方法的返回值类型。 方法描述符不包括方法的名字和参数名字。</p>
+<p>2.2 接口和组件</p>
+<p>2.2.1 描述</p>
+<p>ASM API对于产生和转换编译后的类是基于ClassVistor抽象类的。visitField返回一个FieldVistor，这个规则在FieldVistor中也是递归的。</p>
+<p>ClassVistor中方法调用的顺序：</p>
+<p>visit visitSource? visitOuterClass? ( visitAnnotation | visitAttribute )*</p>
+<p>( visitInnerClass | visitField | visitMethod )*</p>
+<p>visitEnd</p>
+<p>visit必须首先调用，接着最多一个visitSource,接着最多一个visitOuterClass, 接着任意数量个visitAnnotation和visitAttribute，接着任意数量个visitInnerClass、visitField和visitMethod，最后调用visitEnd。</p>
+<p>ASM提供了三种基于ClassVisitor API的核心组件来产生和转换类，</p>
+<ul>
+<li>ClassReader类解析一个给定的编译好的类的字节数组，调用ClassVisitor实例中的visitXXX方法，这个ClassVistor实例是作为accept的参数传入的。它可以被看做是事件的生产者。</li>
+</ul>
+<ul>
+<li>ClassWriter类是ClassVistor的子类，它将编译后的类直接以二进制的形式构建。它输出一个包括编译好的类的字节数组（可以通过toByteArray方法获得）。它被看做是事件的消费者。</li>
+</ul>
+<ul>
+<li>ClassVistor类代理了所有的来自其他ClassVistor实例的方法调用。它被看做是事件的过滤者。</li>
+</ul>
+<p>2.2.2 解析类</p>
+<p>解析一个现有的类需要的组件只是ClassReader。例子，我们需要打印一个类的内容，首先我们写一个ClassVistor的子类来打印它所访问的类的信息。</p>
+<blockquote>
+<p>ClassPrinter cp = new ClassPrinter();<br>ClassReader cr = new ClassReader(“java.lang.Runnable”);<br>cr.accept(cp, 0);</p>
+</blockquote>
+<p>由于ClassPrinter是ClassVistor的子类，前面提到了，ClassReader的accept方法需要传入一个ClassVistor,所以讲将cp作为accept的参数。</p>
+<p>运行结果是：</p>
+<blockquote>
+<p>java/lang/Runnable extends java/lang/Object {<br>run()V<br>}</p>
+</blockquote>
+<p>注意，有许多方法构建ClassReader实例。可以被访问的类可以是用名字标注的（如上例），或者通过字节数组值或者作为一个InputStream。可以通过ClassLoader的getResourceAsStream方法来获得一个input stream。如：</p>
+<blockquote>
+<p>cl.getResourceAsStream(classname.replace(’.’, ’/’) + “.class”);</p>
+</blockquote>
+<p>2.2.3 产生类</p>
+<p>为了产生一个类，唯一需要的组件就是ClassWriter组件。</p>
+<p>可以借助ClassLoader（说明中有两种方法）动态加载一个产生的类。</p>
+<p>2.2.4 转换类</p>
+<p>这里讲述将ClassReader和ClassWriter组件一起用，结果就是被Class reader解析的类会被class writer重建。</p>
+<blockquote>
+<p>byte[] b1 = …;<br>ClassWriter cw = new ClassWriter(0);<br>// cv forwards all events to cw<br>ClassVisitor cv = new ClassVisitor(ASM4, cw) { };<br>ClassReader cr = new ClassReader(b1);<br>cr.accept(cv, 0);<br>byte[] b2 = cw.toByteArray(); // b2 represents the same class as b1</p>
+</blockquote>
+<p>优化：</p>
+<p> 使用上面的方法，仅仅修改了jdk版本，绝大多数没有改变。b2是通过抓取b1的方式的方式构建的。更高效的做法是直接拷贝不需要改变的部分，这样，这一部分就不需进行解析和产生响应的事件了。ASM可以自动进行这样的优化。</p>
+<p>2.2.5 删除类成员</p>
+<p>不将函数调用进行转发，相当于相应的类元素被移除了。</p>
+<p>但是这样的策略对fields和methods是无法奏效的，因为visitField和visitMethod方法必须有一个返回值，所以此时返回一个null即可。</p>
+<p>注意：想要指明一个方法需要同时支出函数名和描述符。因为可能会有很多方法具有相同的名字但是具有不同的参数。</p>
+<p>2.2.6添加类成员</p>
+<p>和不转发方法调用不同的是，转发的更多就相当于添加了一些类元素。</p>
+<blockquote>
+<p>Note: in fact the only truly correct solution is to add new members by making additional calls in the visitEnd method. Indeed a class must not contain duplicate members, and the only way to be sure that a new member is unique is to compare it with all the existing members, which can only be done once they have all been visited, i.e. in the visitEnd method. This is rather constraining. Using generated names that are unlikely to be used by a programmer, such as _counter$ or <em>4B7F</em> is sufficient in practice to avoid duplicate members without having to add them in visitEnd. Note that, as discussed in the first chapter, the tree API does not have this limitation: it is possible to add new members at any time inside a transformation with this API.</p>
+</blockquote>
+<p>示例：添加一个变量的做法，在visitField中判断要添加的变量是否已经存在，若不存在，则在visitEnd方法中添加这个变量。</p>
 
       
     </div>
@@ -324,7 +435,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/程序人生/" rel="tag">#程序人生</a>
+            <a href="/tags/翻译/" rel="tag">#翻译</a>
           
         </div>
       
@@ -333,17 +444,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/13/Andorid开发艺术探索-读书笔记-第三章/" rel="next" title="Andorid开发艺术探索 读书笔记 第三章">
-                <i class="fa fa-chevron-left"></i> Andorid开发艺术探索 读书笔记 第三章
+              <a href="/2016/05/25/华为PUSH-SDK-接入方法/" rel="next" title="华为PUSH SDK 接入方法">
+                <i class="fa fa-chevron-left"></i> 华为PUSH SDK 接入方法
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/13/利用zip格式实现手机客户端二维码扫描分享识别/" rel="prev" title="利用zip格式实现手机客户端二维码扫描分享识别">
-                利用zip格式实现手机客户端二维码扫描分享识别 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -369,8 +476,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/05/13/有关创业团队和执行力的想法/"
-           data-title="有关创业团队和执行力的想法" data-url="http://yoursite.com/2016/05/13/有关创业团队和执行力的想法/">
+      <div class="ds-thread" data-thread-key="2016/07/25/ASM学习笔记-ASM-4-user-guide-第二章要点翻译总结/"
+           data-title="ASM学习笔记--ASM 4 user guide 第二章要点翻译总结" data-url="http://yoursite.com/2016/07/25/ASM学习笔记-ASM-4-user-guide-第二章要点翻译总结/">
       </div>
     
   </div>
