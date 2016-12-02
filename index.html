@@ -303,29 +303,12 @@
 
       
         
-          
-            <p><img src="http://i.imgur.com/kCjNW2R.png" alt=""></p>
-<h1 id="Project层"><a href="#Project层" class="headerlink" title="Project层"></a>Project层</h1><hr>
-<ol>
-<li>根目录下的<code>settings.gradle</code> 主要作用是告诉Gradle在构建app的过程中它需要包含哪些moudles.一般情况下<code>include ‘：app’</code>就可以了。</li>
-<li>根目录下的<code>build.gradle</code>文件定义了适用于所有modules的配置信息。默认情况下，它包含了<code>buildscript {}</code>语句块来定义Gradle仓库和一些依赖。</li>
-</ol>
-<h1 id="Moudle层"><a href="#Moudle层" class="headerlink" title="Moudle层"></a>Moudle层</h1><hr>
-<ol>
-<li>该层文件<code>build.gradle</code>作用是为所在的module配置构建信息，在这个文件中可以自定义打包选项等。此外，该文件中的设置会覆盖project层<code>build.gradle</code>文件以及<code>main</code>/ app manifest文件中的设置信息。<br>该文件中有几项比较重要，其中<ul>
-<li><code>android {}</code><br><code>compileSdkVersion</code>指定了Gradle构建我们的项目时所要使用的Android API level。<br><code>buildToolsVersion</code> 指定了Gradle构建app时使用的SDK build tools、命令行以及编译器的版本。</li>
-<li><code>defaultConfig {}</code><br><code>applicationId</code> 定义了app的完整包名，当我们的应用发布到应用市场时，这个包名就相当于应用的id。<br><code>minSdkVersion</code> app运行时所需要的最小API level，即app所兼容的Android最低版本号。<br><code>targetSdkVersion</code> 定义测试app使用的API level。</li>
-<li><code>buildTypes {}</code><br>其中可以分别定义debug and release两个apk版本的配置信息，对应于/projectName/app/build/outputs/apk目录下的两个Android studio生成apk版本。</li>
-<li><code>dependencies {}</code><br>主要用于添加依赖的各种库。</li>
-</ul>
-</li>
-<li><code>local.properties</code>中最重要的是定义了SDK的安装位置，但是这个文件是Android Studio自动生成的，所以当我们修改SDK路径的的时候应该通过Android Studio中的设置选项修改，而不是直接修改这个文件。</li>
-</ol>
-<h1 id="Source-Sets层"><a href="#Source-Sets层" class="headerlink" title="Source Sets层"></a>Source Sets层</h1><h2 id="主要用来组织源代码和资源文件"><a href="#主要用来组织源代码和资源文件" class="headerlink" title="主要用来组织源代码和资源文件"></a>主要用来组织源代码和资源文件</h2><ol>
-<li>AndroidManifest.xml 在该文件中添加源码所需的权限，添加自定义的Activity、BroadCastReceiver、Service、ContentProvider等。</li>
-</ol>
-
-          
+          <p>本文主要对Android Studio中使用的Gradle目录结构，以及各文件配置内容进行描述。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/12/02/Gradle在Android-Studio的目录结构及配置内容总结/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
