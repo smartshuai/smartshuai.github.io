@@ -244,6 +244,135 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/02/Gradle在Android-Studio的目录结构及配置内容总结/" itemprop="url">
+                  Gradle在Android Studio的目录结构及配置内容总结
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-02T16:02:38+08:00" content="2016-12-02">
+              2016-12-02
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/02/Gradle在Android-Studio的目录结构及配置内容总结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/02/Gradle在Android-Studio的目录结构及配置内容总结/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/12/02/Gradle在Android-Studio的目录结构及配置内容总结/" class="leancloud_visitors" data-flag-title="Gradle在Android Studio的目录结构及配置内容总结">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><img src="http://i.imgur.com/kCjNW2R.png" alt=""></p>
+<h1 id="Project层"><a href="#Project层" class="headerlink" title="Project层"></a>Project层</h1><hr>
+<ol>
+<li>根目录下的<code>settings.gradle</code> 主要作用是告诉Gradle在构建app的过程中它需要包含哪些moudles.一般情况下<code>include ‘：app’</code>就可以了。</li>
+<li>根目录下的<code>build.gradle</code>文件定义了适用于所有modules的配置信息。默认情况下，它包含了<code>buildscript {}</code>语句块来定义Gradle仓库和一些依赖。</li>
+</ol>
+<h1 id="Moudle层"><a href="#Moudle层" class="headerlink" title="Moudle层"></a>Moudle层</h1><hr>
+<ol>
+<li>该层文件<code>build.gradle</code>作用是为所在的module配置构建信息，在这个文件中可以自定义打包选项等。此外，该文件中的设置会覆盖project层<code>build.gradle</code>文件以及<code>main</code>/ app manifest文件中的设置信息。<br>该文件中有几项比较重要，其中<ul>
+<li><code>android {}</code><br><code>compileSdkVersion</code>指定了Gradle构建我们的项目时所要使用的Android API level。<br><code>buildToolsVersion</code> 指定了Gradle构建app时使用的SDK build tools、命令行以及编译器的版本。</li>
+<li><code>defaultConfig {}</code><br><code>applicationId</code> 定义了app的完整包名，当我们的应用发布到应用市场时，这个包名就相当于应用的id。<br><code>minSdkVersion</code> app运行时所需要的最小API level，即app所兼容的Android最低版本号。<br><code>targetSdkVersion</code> 定义测试app使用的API level。</li>
+<li><code>buildTypes {}</code><br>其中可以分别定义debug and release两个apk版本的配置信息，对应于/projectName/app/build/outputs/apk目录下的两个Android studio生成apk版本。</li>
+<li><code>dependencies {}</code><br>主要用于添加依赖的各种库。</li>
+</ul>
+</li>
+<li><code>local.properties</code>中最重要的是定义了SDK的安装位置，但是这个文件是Android Studio自动生成的，所以当我们修改SDK路径的的时候应该通过Android Studio中的设置选项修改，而不是直接修改这个文件。</li>
+</ol>
+<h1 id="Source-Sets层"><a href="#Source-Sets层" class="headerlink" title="Source Sets层"></a>Source Sets层</h1><h2 id="主要用来组织源代码和资源文件"><a href="#主要用来组织源代码和资源文件" class="headerlink" title="主要用来组织源代码和资源文件"></a>主要用来组织源代码和资源文件</h2><ol>
+<li>AndroidManifest.xml 在该文件中添加源码所需的权限，添加自定义的Activity、BroadCastReceiver、Service、ContentProvider等。</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/07/25/ASM学习笔记-ASM-4-user-guide-第二章要点翻译总结/" itemprop="url">
                   ASM学习笔记--ASM 4 user guide 第二章要点翻译总结
                 </a>
@@ -1245,123 +1374,13 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/13/Andorid开发艺术探索-读书笔记-第三章/" itemprop="url">
-                  Andorid开发艺术探索 读书笔记 第三章
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-13T02:09:32+08:00" content="2016-05-13">
-              2016-05-13
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/13/Andorid开发艺术探索-读书笔记-第三章/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/13/Andorid开发艺术探索-读书笔记-第三章/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/05/13/Andorid开发艺术探索-读书笔记-第三章/" class="leancloud_visitors" data-flag-title="Andorid开发艺术探索 读书笔记 第三章">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <ol>
-<li>ViewGroup继承了View，这意味着View本身就可以是单个控件也可以是又多个控件组成的一组控件，通过这种关系形成了View树的结构。由此，LinearLayout是一个View也是一个ViewGroup，而ViewGroup内部可以又子View，这个子View同样还可以是ViewGroup。</li>
-<li>View中top,left,right,bottom表示View相对于父容器的坐标。而translationX表示View相对于left的偏移，x表示偏移后的坐标，所以有：getX() = getLeft() + getTranslationX();
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/05/13/Andorid开发艺术探索-读书笔记-第三章/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1400,7 +1419,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Android," />
 
 
 
@@ -84,15 +84,39 @@
 
 
 
-<meta name="description" content="Android Developer">
-<meta property="og:type" content="website">
-<meta property="og:title" content="王帅’s Blog">
-<meta property="og:url" content="http://yoursite.com/tags/翻译/index.html">
+<meta name="description" content="Project层
+
+根目录下的settings.gradle 主要作用是告诉Gradle在构建app的过程中它需要包含哪些moudles.一般情况下include ‘：app’就可以了。
+根目录下的build.gradle文件定义了适用于所有modules的配置信息。默认情况下，它包含了buildscript {}语句块来定义Gradle仓库和一些依赖。
+
+Moudle层
+
+该层文件build.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Gradle在Android Studio的目录结构及配置内容总结">
+<meta property="og:url" content="http://yoursite.com/2016/12/02/Gradle在Android-Studio的目录结构及配置内容总结/index.html">
 <meta property="og:site_name" content="王帅’s Blog">
-<meta property="og:description" content="Android Developer">
+<meta property="og:description" content="Project层
+
+根目录下的settings.gradle 主要作用是告诉Gradle在构建app的过程中它需要包含哪些moudles.一般情况下include ‘：app’就可以了。
+根目录下的build.gradle文件定义了适用于所有modules的配置信息。默认情况下，它包含了buildscript {}语句块来定义Gradle仓库和一些依赖。
+
+Moudle层
+
+该层文件build.">
+<meta property="og:image" content="http://i.imgur.com/kCjNW2R.png">
+<meta property="og:updated_time" content="2016-12-02T08:05:30.253Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="王帅’s Blog">
-<meta name="twitter:description" content="Android Developer">
+<meta name="twitter:title" content="Gradle在Android Studio的目录结构及配置内容总结">
+<meta name="twitter:description" content="Project层
+
+根目录下的settings.gradle 主要作用是告诉Gradle在构建app的过程中它需要包含哪些moudles.一般情况下include ‘：app’就可以了。
+根目录下的build.gradle文件定义了适用于所有modules的配置信息。默认情况下，它包含了buildscript {}语句块来定义Gradle仓库和一些依赖。
+
+Moudle层
+
+该层文件build.">
+<meta name="twitter:image" content="http://i.imgur.com/kCjNW2R.png">
 
 
 
@@ -110,7 +134,7 @@
   };
 </script>
 
-  <title> 标签: 翻译 | 王帅’s Blog </title>
+  <title> Gradle在Android Studio的目录结构及配置内容总结 | 王帅’s Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -131,7 +155,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -220,46 +244,156 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        翻译
-        <small>标签</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Gradle在Android Studio的目录结构及配置内容总结
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-02T16:02:38+08:00" content="2016-12-02">
+              2016-12-02
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/02/Gradle在Android-Studio的目录结构及配置内容总结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/02/Gradle在Android-Studio的目录结构及配置内容总结/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/12/02/Gradle在Android-Studio的目录结构及配置内容总结/" class="leancloud_visitors" data-flag-title="Gradle在Android Studio的目录结构及配置内容总结">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <p><img src="http://i.imgur.com/kCjNW2R.png" alt=""></p>
+<h1 id="Project层"><a href="#Project层" class="headerlink" title="Project层"></a>Project层</h1><hr>
+<ol>
+<li>根目录下的<code>settings.gradle</code> 主要作用是告诉Gradle在构建app的过程中它需要包含哪些moudles.一般情况下<code>include ‘：app’</code>就可以了。</li>
+<li>根目录下的<code>build.gradle</code>文件定义了适用于所有modules的配置信息。默认情况下，它包含了<code>buildscript {}</code>语句块来定义Gradle仓库和一些依赖。</li>
+</ol>
+<h1 id="Moudle层"><a href="#Moudle层" class="headerlink" title="Moudle层"></a>Moudle层</h1><hr>
+<ol>
+<li>该层文件<code>build.gradle</code>作用是为所在的module配置构建信息，在这个文件中可以自定义打包选项等。此外，该文件中的设置会覆盖project层<code>build.gradle</code>文件以及<code>main</code>/ app manifest文件中的设置信息。<br>该文件中有几项比较重要，其中<ul>
+<li><code>android {}</code><br><code>compileSdkVersion</code>指定了Gradle构建我们的项目时所要使用的Android API level。<br><code>buildToolsVersion</code> 指定了Gradle构建app时使用的SDK build tools、命令行以及编译器的版本。</li>
+<li><code>defaultConfig {}</code><br><code>applicationId</code> 定义了app的完整包名，当我们的应用发布到应用市场时，这个包名就相当于应用的id。<br><code>minSdkVersion</code> app运行时所需要的最小API level，即app所兼容的Android最低版本号。<br><code>targetSdkVersion</code> 定义测试app使用的API level。</li>
+<li><code>buildTypes {}</code><br>其中可以分别定义debug and release两个apk版本的配置信息，对应于/projectName/app/build/outputs/apk目录下的两个Android studio生成apk版本。</li>
+<li><code>dependencies {}</code><br>主要用于添加依赖的各种库。</li>
+</ul>
+</li>
+<li><code>local.properties</code>中最重要的是定义了SDK的安装位置，但是这个文件是Android Studio自动生成的，所以当我们修改SDK路径的的时候应该通过Android Studio中的设置选项修改，而不是直接修改这个文件。</li>
+</ol>
+<h1 id="Source-Sets层"><a href="#Source-Sets层" class="headerlink" title="Source Sets层"></a>Source Sets层</h1><h2 id="主要用来组织源代码和资源文件"><a href="#主要用来组织源代码和资源文件" class="headerlink" title="主要用来组织源代码和资源文件"></a>主要用来组织源代码和资源文件</h2><ol>
+<li>AndroidManifest.xml 在该文件中添加源码所需的权限，添加自定义的Activity、BroadCastReceiver、Service、ContentProvider等。</li>
+</ol>
 
-      <h1 class="post-title">
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/2016/07/25/ASM学习笔记-ASM-4-user-guide-第二章要点翻译总结/" itemprop="url">
-              
-                <span itemprop="name">ASM学习笔记--ASM 4 user guide 第二章要点翻译总结</span>
-              
-            </a>
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-07-25T20:23:27+08:00"
-              content="2016-07-25" >
-          07-25
-        </time>
-      </div>
+      
+    </div>
 
-    </header>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/25/ASM学习笔记-ASM-4-user-guide-第二章要点翻译总结/" rel="next" title="ASM学习笔记--ASM 4 user guide 第二章要点翻译总结">
+                <i class="fa fa-chevron-left"></i> ASM学习笔记--ASM 4 user guide 第二章要点翻译总结
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -267,6 +401,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/02/Gradle在Android-Studio的目录结构及配置内容总结/"
+           data-title="Gradle在Android Studio的目录结构及配置内容总结" data-url="http://yoursite.com/2016/12/02/Gradle在Android-Studio的目录结构及配置内容总结/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -286,8 +428,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -330,6 +481,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Project层"><span class="nav-number">1.</span> <span class="nav-text">Project层</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Moudle层"><span class="nav-number">2.</span> <span class="nav-text">Moudle层</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Source-Sets层"><span class="nav-number">3.</span> <span class="nav-text">Source Sets层</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#主要用来组织源代码和资源文件"><span class="nav-number">3.1.</span> <span class="nav-text">主要用来组织源代码和资源文件</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -424,6 +586,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
