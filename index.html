@@ -244,6 +244,173 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/16/Activity启动模式探究和性能比较/" itemprop="url">
+                  Activity启动模式探究和性能比较
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-16T15:34:16+08:00" content="2016-12-16">
+              2016-12-16
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/16/Activity启动模式探究和性能比较/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/16/Activity启动模式探究和性能比较/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/12/16/Activity启动模式探究和性能比较/" class="leancloud_visitors" data-flag-title="Activity启动模式探究和性能比较">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>第一部分 四种Activity启动模式说明<br>测试过程中，我们首先启动MainActivity，在MainActivity中intent跳转至SecondActivity（过程1），接着再次从SecondActivity中跳转至MainActivity（过程2）， 本次实验室着重讨论过程2，因为理论和实验均显示，在四种启动模式下，过程1的时间差别不大。</p>
+<p>一、standard<br>默认的模式，每次启动一个Activity都会创建一个新的实例，不管这个实例是否已经存在。<br><img src="http://i.imgur.com/q8C9kRO.png" alt=""><br>分析系统任务显示，系统中的两个MainActivity的hashcode不同，说明在过程2中，说明重新了实例化了一个MainActivity。</p>
+<p>二、singleTop<br>如果需要启动的Activity位于任务栈栈顶，则此Acitivity不会被创建。如果此Activity不在栈顶，那么无论任务任务栈是否已经存在该Activity，系统都会创建Activity。<br><img src="http://i.imgur.com/hUDuiCs.png" alt=""><br>分析系统任务显示，在过程2中系统重新创建了MainActivity实例。</p>
+<p>三、singleTask<br>栈内复用模式+clearTop，如果需要启动的Activity存在于任务栈中，则会将此Acitivity顶部的Activity弹栈，将此Activity实例移至栈顶。<br><img src="http://i.imgur.com/KEXsPY7.png" alt=""><br>分析系统任务显示，在过程2中并没有创建新的MainActivity实例，而是执行了hashcode为20f99f4的MainActivity的onResume()方法来恢复了MainActivity。</p>
+<p>四、singleInstance<br>在singleTask的特点上添加了一点约束：Activity只能单独位于一个任务栈中。<br><img src="http://i.imgur.com/5M3OeN3.png" alt=""><br>分析系统任务显示，在过程2中并没有创建新的MainActivity实例，而是执行了hashcode为62e5c2b的MainActivity的onResume()方法来恢复了MainActivity。</p>
+<p>第二部分 测试结果<br>下表中显示了四种Activity启动模式下，过程2中从SecondActivity中启动MainActivity开始，到MainActivity加载和显示完成并且获取焦点为止的这段时间比较。</p>
+<table>
+<thead>
+<tr>
+<th>time</th>
+<th style="text-align:center">1</th>
+<th style="text-align:right">2</th>
+<th style="text-align:right">3</th>
+<th style="text-align:right">4</th>
+<th style="text-align:right">5</th>
+<th style="text-align:right">avg</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>standard</td>
+<td style="text-align:center">107</td>
+<td style="text-align:right">113</td>
+<td style="text-align:right">108</td>
+<td style="text-align:right">115</td>
+<td style="text-align:right">93</td>
+<td style="text-align:right">107.2</td>
+</tr>
+<tr>
+<td>singleTop</td>
+<td style="text-align:center">107</td>
+<td style="text-align:right">95</td>
+<td style="text-align:right">116</td>
+<td style="text-align:right">175</td>
+<td style="text-align:right">117</td>
+<td style="text-align:right">122</td>
+</tr>
+<tr>
+<td>singleTask</td>
+<td style="text-align:center">38</td>
+<td style="text-align:right">31</td>
+<td style="text-align:right">38</td>
+<td style="text-align:right">38</td>
+<td style="text-align:right">39</td>
+<td style="text-align:right">36.8</td>
+</tr>
+<tr>
+<td>singleInstance</td>
+<td style="text-align:center">59</td>
+<td style="text-align:right">56</td>
+<td style="text-align:right">59</td>
+<td style="text-align:right">55</td>
+<td style="text-align:right">59</td>
+<td style="text-align:right">57.6</td>
+</tr>
+</tbody>
+</table>
+<p>从上表可以看出，过程2 在singleTask和singleInstance模式下的表现明显优于standard和singleTop模式。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/12/02/Gradle在Android-Studio的目录结构及配置内容总结/" itemprop="url">
                   Gradle在Android Studio的目录结构及配置内容总结
                 </a>
@@ -1245,118 +1412,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/13/有关创业团队和执行力的想法/" itemprop="url">
-                  有关创业团队和执行力的想法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-13T12:49:52+08:00" content="2016-05-13">
-              2016-05-13
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/05/13/有关创业团队和执行力的想法/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/13/有关创业团队和执行力的想法/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/05/13/有关创业团队和执行力的想法/" class="leancloud_visitors" data-flag-title="有关创业团队和执行力的想法">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>　　在假装程序员的路上，有幸遇到了三个创业团队，经历的故事不同，经验和教训各自不同。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/05/13/有关创业团队和执行力的想法/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1402,7 +1457,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-count">12</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
